@@ -6,6 +6,12 @@ app.use(express.json());
 
 const validKeys = new Map();
 
+// RUTA PRINCIPAL (Para UptimeRobot y evitar el estado 'Down' en Render)
+app.get('/', (req, res) => {
+    res.status(200).send('MONTANA HUB ONLINE 24/7');
+});
+
+// Endpoint de verificación de keys para Roblox
 app.post('/verify', (req, res) => {
     const { key } = req.body;
     if (!validKeys.has(key)) {
